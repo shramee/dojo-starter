@@ -2,8 +2,6 @@ name: dojo-env
 services:
     renderer-web:
         image: node:18
-        networks:
-            - client-side
         ports:
             - 3000:3000
         volumes:
