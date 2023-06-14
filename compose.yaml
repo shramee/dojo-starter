@@ -1,0 +1,20 @@
+name: dojo-env
+services:
+    renderer-web:
+        image: node:18
+        networks:
+            - client-side
+        ports:
+            - 3000:3000
+        volumes:
+            - ./renderer-web:/code
+
+    dojoengine:
+        image: shramee/dojoengine
+        ports:
+            - 5050:5050
+        entrypoint: [katana]
+        working_dir: /contracts
+        volumes:
+            - ./contracts:/contracts
+            - ./scripts:/scripts
