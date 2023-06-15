@@ -1,6 +1,9 @@
 build:
 	cd ./contracts; sozo build
 
+test:
+	cd ./contracts; sozo test
+
 start:
 	docker compose up
 
@@ -14,3 +17,6 @@ deploy:
 	echo "$$SOZO_OUT" | grep "World at address" | rev | cut -d " " -f 1 | rev >> ./deployed_worlds
 
 serve:
+	@cd ./renderer-web; WORLD_ADDR=$$(tail -n1 ../deployed_worlds) cargo run --release;
+
+deploy_and_run: deploy indexer serve
